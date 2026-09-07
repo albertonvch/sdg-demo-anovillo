@@ -1,12 +1,17 @@
-name: Terraform Plan
+name: Terraform Apply
 
 on:
-  pull_request:
+  push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   id-token: write
   contents: read
+
+concurrency:
+  group: terraform-apply
+  cancel-in-progress: false
 
 env:
   ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
@@ -32,16 +37,10 @@ jobs:
           echo "rutas=$rutas" >> "$GITHUB_OUTPUT"
           echo "Encontradas: $rutas"
 
-  plan:
+  apply:
     needs: descubrir
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        ruta: ${{ fromJson(needs.descubrir.outputs.rutas) }}
-    defaults:
-      run:
-        working-directory: ${{ matrix.ruta }}
+    environment: production
     steps:
       - uses: actions/checkout@v5
 
@@ -49,11 +48,15 @@ jobs:
         with:
           terraform_wrapper: false
 
-      - name: Init
+      - name: Apply en orden
         run: |
-          terraform init \
-            -backend-config=../../backend.hcl \
-            -backend-config="key=${{ matrix.ruta }}.tfstate"
-
-      - name: Plan
-        run: terraform plan -no-color -var-file=terraform.tfvars
+          set -euo pipefail
+          for ruta in $(echo '${{ needs.descubrir.outputs.rutas }}' | jq -r '.[]'); do
+            echo "::group::$ruta"
+            terraform -chdir="$ruta" init \
+              -backend-config=../../backend.hcl \
+              -backend-config="key=$ruta.tfstate"
+            terraform -chdir="$ruta" apply -auto-approve -lock-timeout=5m \
+              -var-file=terraform.tfvars
+            echo "::endgroup::"
+          done
