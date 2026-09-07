@@ -56,4 +56,4 @@ jobs:
             -backend-config="key=${{ matrix.ruta }}.tfstate"
 
       - name: Plan
-        run: terraform plan -no-color -var-file=terraform.tfvars
+        run: terraform plan -no-color -var-file=../terraform.tfvars
