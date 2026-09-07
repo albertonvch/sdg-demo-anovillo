@@ -57,6 +57,6 @@ jobs:
               -backend-config=../../backend.hcl \
               -backend-config="key=$ruta.tfstate"
             terraform -chdir="$ruta" apply -auto-approve -lock-timeout=5m \
-              -var-file=terraform.tfvars
+              -var-file=../terraform.tfvars
             echo "::endgroup::"
           done
