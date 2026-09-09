@@ -4,7 +4,7 @@ module "log_analytics_workspace" {
   version             = "0.5.1"
   name                = "${var.prefix}-${var.project}-azsc1-law-${var.environment}-01"
   location            = var.location
-  resource_group_name = azurerm_resource_group.main.id
+  resource_group_name = azurerm_resource_group.main.name
   tags                = var.tags
 
   log_analytics_workspace_identity = {
