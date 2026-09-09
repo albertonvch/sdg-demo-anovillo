@@ -21,6 +21,7 @@ locals {
     gateway = {
       name                            = "GatewaySubnet"
       address_prefixes                = ["10.0.0.128/26"]
-      default_outbound_access_enabled = falses
+      default_outbound_access_enabled = false
+    }
   }
 }
