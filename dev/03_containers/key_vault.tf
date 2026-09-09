@@ -16,8 +16,8 @@ module "key_vault" {
 
   private_endpoints = {
     primary = {
-      private_dns_zone_resource_ids = [azurerm_private_dns_zone.this.id]
-      subnet_resource_id            = azurerm_subnet.this.id
+      private_dns_zone_resource_ids = [data.azurerm_private_dns_zone.key_vault.id]
+      subnet_resource_id            = data.azurerm_subnet.integration.id
     }
   }
 }
