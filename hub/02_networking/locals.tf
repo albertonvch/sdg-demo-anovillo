@@ -14,7 +14,7 @@ locals {
       address_prefixes                = ["10.0.0.64/26"]
       default_outbound_access_enabled = false
       network_security_group = {
-        id = module.appgw_nsg.resource_idss
+        id = module.appgw_nsg.resource_id
       }
     }
 
