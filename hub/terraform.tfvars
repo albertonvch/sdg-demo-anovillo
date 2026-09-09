@@ -26,7 +26,7 @@ private_dns_zones = {
   data_factory        = "privatelink.datafactory.azure.net"
   data_factory_portal = "privatelink.adf.azure.com"
 
-  container_registry = "privatelink.azurecr.io"
+  container_registry = "privatelink.swedencentral.azurecontainerapps.io"
 
   monitor          = "privatelink.monitor.azure.com"
   monitor_oms      = "privatelink.oms.opinsights.azure.com"
