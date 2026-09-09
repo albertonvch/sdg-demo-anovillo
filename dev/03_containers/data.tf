@@ -28,10 +28,10 @@ data "azurerm_subnet" "integration" {
 
 data "azurerm_private_dns_zone" "acr" {
   name                = var.private_dns_zones["container_registry"]
-  resource_group_name = data.azurerm_resource_group.dev_rg.name
+  resource_group_name = data.azurerm_resource_group.hub_rg.name
 }
 
 data "azurerm_private_dns_zone" "key_vault" {
   name                = var.private_dns_zones["key_vault"]
-  resource_group_name = data.azurerm_resource_group.dev_rg.name
+  resource_group_name = data.azurerm_resource_group.hub_rg.name
 }
