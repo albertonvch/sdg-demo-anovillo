@@ -20,5 +20,26 @@ module "key_vault" {
       subnet_resource_id            = data.azurerm_subnet.integration.id
     }
   }
+
+  diagnostic_settings = {
+    to_law = {
+      name                  = "to-law"
+      workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
+    }
+  }
+  keys = {
+    BYOK_CMK_DEV = {
+      key_opts = [
+        "decrypt",
+        "encrypt",
+        "sign",
+        "unwrapKey",
+        "verify",
+        "wrapKey"
+      ]
+      key_type = "RSA"
+      name     = "cmk-for-dev"
+      key_size = 2048
+  } }
 }
 

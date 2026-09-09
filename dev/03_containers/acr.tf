@@ -19,5 +19,12 @@ module "acr" {
       subnet_resource_id = data.azurerm_subnet.integration.id
     }
   }
+
+  diagnostic_settings = {
+    to_law = {
+      name                  = "to-law"
+      workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
+    }
+  }
 }
 
