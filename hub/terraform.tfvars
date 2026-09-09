@@ -1,6 +1,8 @@
 project     = "sdg"
 environment = "hub"
 prefix      = "anovillo"
+location    = "swedencentral"
+region_code = "sc1"
 
 tags = {
   "environment" = "hub"
