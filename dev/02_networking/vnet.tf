@@ -46,7 +46,7 @@ data "azurerm_private_dns_zone" "this" {
 resource "azurerm_private_dns_zone_virtual_network_link" "this" {
   for_each = var.private_dns_zones
 
-  name                  = "${each.key}-vnet-link"
+  name                  = "${each.key}-vnet-link-${var.environment}"
   resource_group_name   = data.azurerm_resource_group.hub_rg.name
   private_dns_zone_name = each.value
   virtual_network_id    = module.vnet1.resource_id
