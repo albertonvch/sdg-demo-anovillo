@@ -33,6 +33,7 @@ module "key_vault" {
   }
 }
 
+
 resource "azapi_resource" "cmk_dev" {
   type      = "Microsoft.KeyVault/vaults/keys@2023-07-01"
   name      = "cmk-for-dev"
