@@ -37,3 +37,6 @@ private_dns_zones = {
   ai_openai             = "privatelink.openai.azure.com"
   ai_services           = "privatelink.services.ai.azure.com"
 }
+
+
+address_space_vnet1 = ["10.0.0.0/24"]
