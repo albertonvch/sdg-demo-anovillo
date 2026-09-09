@@ -22,6 +22,16 @@ module "vnet1" {
   flow_timeout_in_minutes = 30
   name                    = "${var.prefix}-${var.project}-azsc1-vnet-${var.environment}-01"
 
+  peerings = {
+    hub = {
+      name                               = "${var.prefix}-${var.project}-azsc1-vnet-${var.environment}-01-to-${var.prefix}-${var.project}-azsc1-vnet-${var.hub_environment}-01"
+      remote_virtual_network_resource_id = data.azurerm_virtual_network.hub.id
+      allow_forwarded_traffic            = true
+      allow_virtual_network_access       = true
+      create_reverse_peering             = true
+      reverse_name                       = "${var.prefix}-${var.project}-azsc1-vnet-${var.hub_environment}-01-to-${var.prefix}-${var.project}-azsc1-vnet-${var.environment}-01"
+    }
+  }
 
   subnets = local.subnets
 }
@@ -37,7 +47,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "this" {
   for_each = var.private_dns_zones
 
   name                  = "${each.key}-vnet-link"
-  resource_group_name   = data.azurerm_resource_group.dev_rg.name
+  resource_group_name   = data.azurerm_resource_group.hub_rg.name
   private_dns_zone_name = each.value
   virtual_network_id    = module.vnet1.resource_id
   registration_enabled  = false
