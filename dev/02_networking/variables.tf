@@ -12,6 +12,10 @@ variable "environment" {
   type    = string
   default = "dev"
 }
+variable "hub_environment" {
+  type    = string
+  default = "hub"
+}
 
 variable "tags" {
   type = map(string)
