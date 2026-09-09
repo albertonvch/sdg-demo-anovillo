@@ -5,7 +5,7 @@ variable "project" {
 
 variable "location" {
   type    = string
-  default = "westeurope"
+  default = "swedencentral"
 }
 
 
