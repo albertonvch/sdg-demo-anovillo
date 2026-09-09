@@ -11,8 +11,12 @@ module "key_vault" {
   sku_name                      = "premium"
   purge_protection_enabled      = true
   soft_delete_retention_days    = 90
-  public_network_access_enabled = false
-  tags                          = var.tags
+  public_network_access_enabled = true
+  network_acls = {
+    bypass         = "AzureServices"
+    default_action = "Deny"
+  }
+  tags = var.tags
 
   private_endpoints = {
     primary = {
