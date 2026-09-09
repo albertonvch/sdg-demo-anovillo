@@ -21,10 +21,6 @@ locals {
     gateway = {
       name                            = "GatewaySubnet"
       address_prefixes                = ["10.0.0.128/26"]
-      default_outbound_access_enabled = false
-      network_security_group = {
-        id = module.hub_nsg.resource_id
-      }
-    }
+      default_outbound_access_enabled = falses
   }
 }
