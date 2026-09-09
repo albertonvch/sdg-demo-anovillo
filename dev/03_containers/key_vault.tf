@@ -24,7 +24,7 @@ module "key_vault" {
   diagnostic_settings = {
     to_law = {
       name                  = "to-law"
-      workspace_resource_id = data.azurerm_log_analytics_workspace.c.id
+      workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
     }
   }
   keys = {
