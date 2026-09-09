@@ -1,5 +1,5 @@
 project         = "sdg"
-environment     = "hub"
+environment     = "dev"
 hub_environment = "hub"
 prefix          = "anovillo"
 location        = "swedencentral"
