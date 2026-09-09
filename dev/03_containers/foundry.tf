@@ -1,4 +1,4 @@
-module "test" {
+module "foundry" {
   source  = "Azure/avm-res-cognitiveservices-account/azurerm"
   version = "0.11.1"
 
