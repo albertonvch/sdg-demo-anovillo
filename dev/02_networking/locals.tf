@@ -16,6 +16,9 @@ locals {
       network_security_group = {
         id = module.dev_nsg.resource_id
       }
+      nat_gateway = {
+        id = azurerm_nat_gateway.dev_natgw.id
+      }
       delegations = [{
         name = "aca_delegation"
         service_delegation = {
