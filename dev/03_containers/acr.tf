@@ -16,7 +16,7 @@ module "acr" {
       private_dns_zone_resource_ids = [
         data.azurerm_private_dns_zone.acr.id
       ]
-      subnet_resource_id = azurerm_subnet.this.id
+      subnet_resource_id = data.azurerm_subnet.integration.id
     }
   }
 }
