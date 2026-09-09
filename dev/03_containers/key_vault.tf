@@ -27,19 +27,23 @@ module "key_vault" {
       workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
     }
   }
-  keys = {
-    BYOK_CMK_DEV = {
-      key_opts = [
-        "decrypt",
-        "encrypt",
-        "sign",
-        "unwrapKey",
-        "verify",
-        "wrapKey"
-      ]
-      key_type = "RSA"
-      name     = "cmk-for-dev"
-      key_size = 2048
-  } }
 }
 
+resource "azapi_resource" "cmk_dev" {
+  type      = "Microsoft.KeyVault/vaults/keys@2023-07-01"
+  name      = "cmk-for-dev"
+  parent_id = module.key_vault.resource_id
+
+  body = {
+    properties = {
+      kty     = "RSA"
+      keySize = 2048
+      keyOps  = ["decrypt", "encrypt", "sign", "unwrapKey", "verify", "wrapKey"]
+      attributes = {
+        enabled = true
+      }
+    }
+  }
+
+  response_export_values = ["properties.keyUri", "properties.keyUriWithVersion"]
+}
