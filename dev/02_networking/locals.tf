@@ -7,6 +7,12 @@ locals {
       network_security_group = {
         id = module.dev_nsg.resource_id
       }
+      service_endpoints = [
+        "Microsoft.Storage",
+        "Microsoft.KeyVault",
+        "Microsoft.Sql",
+        "Microsoft.CognitiveServices"
+      ]
     }
 
     aca = {
