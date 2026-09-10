@@ -4,7 +4,7 @@ resource "azurerm_public_ip" "vpn_pip" {
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name
   sku                 = "Standard"
-  zones               = ["1"]
+  zones               = ["1", "2", "3"]
 
   allocation_method = "Static"
 }
@@ -19,7 +19,7 @@ resource "azurerm_virtual_network_gateway" "vng" {
 
   active_active = false
   bgp_enabled   = false
-  sku           = "Basic"
+  sku           = "VpnGw1"
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
