@@ -13,6 +13,6 @@ terraform {
 }
 
 provider "azurerm" {
-  resource_providers_to_register = ["Microsoft.Storage", "Microsoft.Network", "Microsoft.ContainerRegistry", "Microsoft.KeyVault"]
+  resource_providers_to_register = ["Microsoft.Storage", "Microsoft.Network", "Microsoft.ContainerRegistry", "Microsoft.KeyVault", "Microsoft.DocumentDB"]
   features {}
 }
