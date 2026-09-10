@@ -26,6 +26,13 @@ data "azurerm_subnet" "integration" {
   resource_group_name  = data.azurerm_resource_group.dev_rg.name
 }
 
+
+data "azurerm_subnet" "aca" {
+  name                 = "${var.prefix}-${var.project}-az${var.region_code}-subnet-${var.environment}-aca-01"
+  virtual_network_name = data.azurerm_virtual_network.this.name
+  resource_group_name  = data.azurerm_resource_group.dev_rg.name
+}
+
 data "azurerm_private_dns_zone" "acr" {
   name                = var.private_dns_zones["container_registry"]
   resource_group_name = data.azurerm_resource_group.hub_rg.name
@@ -38,5 +45,10 @@ data "azurerm_private_dns_zone" "key_vault" {
 
 data "azurerm_private_dns_zone" "ai_openai" {
   name                = var.private_dns_zones["ai_openai"]
+  resource_group_name = data.azurerm_resource_group.hub_rg.name
+}
+
+data "azurerm_private_dns_zone" "cosmos_sql" {
+  name                = var.private_dns_zones["cosmos_sql"]
   resource_group_name = data.azurerm_resource_group.hub_rg.name
 }
