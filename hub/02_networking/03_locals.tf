@@ -1,4 +1,7 @@
 locals {
+
+  tenant_id = "ebe37030-6f42-44b6-8195-93b06d127abc"
+
   subnets = {
     integration = {
       name                            = "${var.prefix}-${var.project}-az${var.region_code}-subnet-${var.environment}-integration-01"

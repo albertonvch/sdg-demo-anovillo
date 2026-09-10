@@ -30,5 +30,8 @@ resource "azurerm_virtual_network_gateway" "vng" {
 
   vpn_client_configuration {
     address_space = ["172.16.0.0/24"]
+    aad_audience  = "c632b3df-fb67-4d84-bdcf-b95ad541b5c8" #Endpoint ID of the Azure AD application used for authentication
+    aad_issuer    = "https://sts.windows.net/${local.tenant_id}/"
+    aad_tenant    = "https://login.microsoftonline.com/${local.tenant_id}/"
   }
 }
