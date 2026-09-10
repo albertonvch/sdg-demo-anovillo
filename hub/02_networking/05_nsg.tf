@@ -3,7 +3,7 @@ module "hub_nsg" {
 
   name                = "${var.prefix}-${var.project}-azsc1-nsg-${var.environment}-01"
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.this.name
+  resource_group_name = data.azurerm_resource_group.rg.name
 
   security_rules = {
     AllowVnetInbound = {
@@ -109,7 +109,7 @@ module "appgw_nsg" {
 
   name                = "${var.prefix}-${var.project}-azsc1-nsg-${var.environment}-02-appgw"
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.this.name
+  resource_group_name = data.azurerm_resource_group.rg.name
 
   security_rules = {
     AllowHTTPSInbound = {
