@@ -33,8 +33,8 @@ module "vnet1" {
       create_reverse_peering             = true
       reverse_name                       = "${var.prefix}-${var.project}-azsc1-vnet-${var.hub_environment}-01-to-${var.prefix}-${var.project}-azsc1-vnet-${var.environment}-01"
       reverse_allow_forwarded_traffic    = true
-      reverse_allow_gateway_transit      = false
-      reverse_use_remote_gateways        = true
+      reverse_allow_gateway_transit      = true
+      reverse_use_remote_gateways        = false
     }
   }
 
