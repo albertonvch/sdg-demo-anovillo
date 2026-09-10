@@ -20,3 +20,6 @@ resource "azurerm_container_app_environment" "aca_environment" {
   }
   tags = var.tags
 }
+
+
+

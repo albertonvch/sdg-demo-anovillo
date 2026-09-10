@@ -52,3 +52,14 @@ data "azurerm_private_dns_zone" "cosmos_sql" {
   name                = var.private_dns_zones["cosmos_sql"]
   resource_group_name = data.azurerm_resource_group.hub_rg.name
 }
+
+
+
+data "azurerm_role_definition" "key_vault_secrets_user" {
+  name = "Key Vault Secrets User"
+}
+
+
+data "azurerm_role_definition" "acr_pull" {
+  name = "AcrPull"
+}
