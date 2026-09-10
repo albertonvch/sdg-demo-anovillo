@@ -12,11 +12,12 @@ module "key_vault" {
   purge_protection_enabled      = true
   soft_delete_retention_days    = 90
   public_network_access_enabled = true
-  network_acls = {
-    bypass         = "AzureServices"
-    default_action = "Deny"
-  }
-  tags = var.tags
+  #   network_acls = {
+  #     bypass         = "AzureServices"
+  #     default_action = "Allow"
+  #   }
+  network_acls = null #temporal while deplying infraestructure
+  tags         = var.tags
 
   private_endpoints = {
     primary = {
