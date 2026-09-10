@@ -33,6 +33,16 @@ data "azurerm_subnet" "aca" {
   resource_group_name  = data.azurerm_resource_group.dev_rg.name
 }
 
+data "azurerm_private_dns_zone" "storage_blob" {
+  name                = var.private_dns_zones["storage_blob"]
+  resource_group_name = data.azurerm_resource_group.hub_rg.name
+}
+
+data "azurerm_private_dns_zone" "storage_web" {
+  name                = var.private_dns_zones["storage_web"]
+  resource_group_name = data.azurerm_resource_group.hub_rg.name
+}
+
 data "azurerm_private_dns_zone" "acr" {
   name                = var.private_dns_zones["container_registry"]
   resource_group_name = data.azurerm_resource_group.hub_rg.name
