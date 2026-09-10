@@ -143,7 +143,7 @@ module "appgw_nsg" {
       access                     = "Allow"
       protocol                   = "Tcp"
       source_port_range          = "*"
-      destination_port_range     = "65200-65545"
+      destination_port_range     = "65200-65535"
       source_address_prefix      = "GatewayManager"
       destination_address_prefix = "*"
     }
