@@ -3,7 +3,7 @@ data "azurerm_log_analytics_workspace" "law" {
   resource_group_name = data.azurerm_resource_group.this.name
 }
 
-data "azurerm_resource_group" "this" {
+data "azurerm_resource_group" "rg" {
   name = "${var.prefix}-${var.project}-azsc1-rg-${var.environment}-01"
 
 }
