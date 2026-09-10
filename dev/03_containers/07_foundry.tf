@@ -52,4 +52,9 @@ module "foundry" {
       workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
     }
   }
+
+  managed_identities = {
+    system_assigned            = true
+    user_assigned_resource_ids = toset([azurerm_user_assigned_identity.umi_dev.id])
+  }
 }
