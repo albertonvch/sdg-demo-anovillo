@@ -26,15 +26,15 @@ module "vnet1" {
     hub = {
       name                               = "${var.prefix}-${var.project}-azsc1-vnet-${var.environment}-01-to-${var.prefix}-${var.project}-azsc1-vnet-${var.hub_environment}-01"
       remote_virtual_network_resource_id = data.azurerm_virtual_network.hub.id
-      allow_forwarded_traffic            = false
+      allow_forwarded_traffic            = true
       allow_gateway_transit              = false
       allow_virtual_network_access       = true
-      use_remote_gateways                = false
+      use_remote_gateways                = true
       create_reverse_peering             = true
       reverse_name                       = "${var.prefix}-${var.project}-azsc1-vnet-${var.hub_environment}-01-to-${var.prefix}-${var.project}-azsc1-vnet-${var.environment}-01"
-      reverse_allow_forwarded_traffic    = false
+      reverse_allow_forwarded_traffic    = true
       reverse_allow_gateway_transit      = false
-      reverse_use_remote_gateways        = false
+      reverse_use_remote_gateways        = true
     }
   }
 
