@@ -68,8 +68,8 @@ module "application_gateway" {
   name      = "${var.prefix}${var.project}-azsc1-agw-${var.environment}-01"
   parent_id = data.azurerm_resource_group.rg.id
   autoscale_configuration = {
-    min_capacity = 2
-    max_capacity = 2
+    min_capacity = 1
+    max_capacity = 5
   }
 
   # Backend address pool configuration for the application gateway
