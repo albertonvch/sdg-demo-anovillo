@@ -188,7 +188,7 @@ module "dev_nsg" {
       direction                  = "Outbound"
       priority                   = 500
       protocol                   = "Tcp"
-      source_address_prefix      = "10.7.0.0/23"
+      source_address_prefixes    = local.subnets["aca"].address_prefixes
       source_port_range          = "*"
     }
 
