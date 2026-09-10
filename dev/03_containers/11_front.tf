@@ -2,7 +2,7 @@ module "frontend_storage_account" {
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
   version = "0.10.0"
 
-  name      = "${var.prefix}${var.project}azsc1sa${var.environment}web01"
+  name      = "${var.prefix}${var.project}azsc1sa${var.environment}"
   location  = var.location
   parent_id = data.azurerm_resource_group.dev_rg.id
   tags      = var.tags
