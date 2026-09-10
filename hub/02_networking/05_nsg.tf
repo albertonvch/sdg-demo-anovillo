@@ -112,9 +112,21 @@ module "appgw_nsg" {
   resource_group_name = data.azurerm_resource_group.rg.name
 
   security_rules = {
+    AllowHTTPInbound = {
+      name                       = "AllowHTTPInbound"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "80"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    }
+
     AllowHTTPSInbound = {
       name                       = "AllowHTTPSInbound"
-      priority                   = 100
+      priority                   = 101
       direction                  = "Inbound"
       access                     = "Allow"
       protocol                   = "Tcp"
@@ -124,29 +136,65 @@ module "appgw_nsg" {
       destination_address_prefix = "*"
     }
 
-    AllowAzureLoadBalancerInbound = {
-      name                       = "AllowAzureLoadBalancerInbound"
-      priority                   = 101
+    AllowGatewayManagerHealthProbesInbound = {
+      name                       = "AllowGatewayManagerHealthProbesInbound"
+      priority                   = 102
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "65200-65545"
+      source_address_prefix      = "GatewayManager"
+      destination_address_prefix = "*"
+    }
+
+    AllowVnetInbound = {
+      name                       = "AllowVnetInbound"
+      priority                   = 103
       direction                  = "Inbound"
       access                     = "Allow"
       protocol                   = "*"
       source_port_range          = "*"
       destination_port_range     = "*"
+      source_address_prefix      = "VirtualNetwork"
+      destination_address_prefix = "VirtualNetwork"
+    }
+
+    AllowAzureLoadBalancerHealthCheck80Inbound = {
+      name                       = "AllowAzureLoadBalancerHealthCheck80Inbound"
+      priority                   = 104
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "80"
       source_address_prefix      = "AzureLoadBalancer"
       destination_address_prefix = "*"
     }
 
-    DenyAllInbound = {
-      name                       = "DenyAllInbound"
-      priority                   = 4000
+    AllowAzureLoadBalancerHealthCheck443Inbound = {
+      name                       = "AllowAzureLoadBalancerHealthCheck443Inbound"
+      priority                   = 105
       direction                  = "Inbound"
-      access                     = "Deny"
-      protocol                   = "*"
+      access                     = "Allow"
+      protocol                   = "Tcp"
       source_port_range          = "*"
-      destination_port_range     = "*"
-      source_address_prefix      = "*"
+      destination_port_range     = "443"
+      source_address_prefix      = "AzureLoadBalancer"
       destination_address_prefix = "*"
     }
+
+    # DenyAllInbound = {
+    #   name                       = "DenyAllInbound"
+    #   priority                   = 4000
+    #   direction                  = "Inbound"
+    #   access                     = "Deny"
+    #   protocol                   = "*"
+    #   source_port_range          = "*"
+    #   destination_port_range     = "*"
+    #   source_address_prefix      = "*"
+    #   destination_address_prefix = "*"
+    # }
 
     AllowVnetOutbound = {
       name                       = "AllowVnetOutbound"
@@ -160,16 +208,16 @@ module "appgw_nsg" {
       destination_address_prefix = "VirtualNetwork"
     }
 
-    DenyAllOutbound = {
-      name                       = "DenyAllOutbound"
-      priority                   = 4000
-      direction                  = "Outbound"
-      access                     = "Deny"
-      protocol                   = "*"
-      source_port_range          = "*"
-      destination_port_range     = "*"
-      source_address_prefix      = "*"
-      destination_address_prefix = "*"
-    }
+    # DenyAllOutbound = {
+    #   name                       = "DenyAllOutbound"
+    #   priority                   = 4000
+    #   direction                  = "Outbound"
+    #   access                     = "Deny"
+    #   protocol                   = "*"
+    #   source_port_range          = "*"
+    #   destination_port_range     = "*"
+    #   source_address_prefix      = "*"
+    #   destination_address_prefix = "*"
+    # }
   }
 }
