@@ -2,7 +2,7 @@
 
 
 resource "azurerm_container_app" "container_backend" {
-  name                         = "${var.prefix}-${var.project}-azsc1-aca-${var.environment}-backend"
+  name                         = "${var.prefix}-${var.project}-azsc1-aca-${var.environment}-back"
   container_app_environment_id = azurerm_container_app_environment.aca_environment.id
   resource_group_name          = data.azurerm_resource_group.dev_rg.name
   revision_mode                = "Single"

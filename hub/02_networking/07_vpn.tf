@@ -3,6 +3,8 @@ resource "azurerm_public_ip" "vpn_pip" {
   name                = "${var.prefix}-${var.project}-azsc1-vpn-pip-${var.environment}"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name
+  sku                 = "Standard"
+  zones               = ["1"]
 
   allocation_method = "Static"
 }
