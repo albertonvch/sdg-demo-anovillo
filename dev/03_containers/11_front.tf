@@ -38,10 +38,10 @@ module "frontend_storage_account" {
     }
   }
 
-  diagnostic_settings_blob = {
-    to_law = {
-      name                  = "to-law"
-      workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
-    }
-  }
+  #   diagnostic_settings_blob = {
+  #     to_law = {
+  #       name                  = "to-law"
+  #       workspace_resource_id = data.azurerm_log_analytics_workspace.hub_law.id
+  #     }
+  #   }
 }
