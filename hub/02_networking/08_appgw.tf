@@ -91,7 +91,7 @@ module "application_gateway" {
     {
       name = "appGatewayBackendHttpSettings"
       properties = {
-        port            = 8000
+        port            = 80
         protocol        = "Http"
         path            = "/"
         request_timeout = 30
@@ -111,9 +111,9 @@ module "application_gateway" {
         timeout                                   = 10
         unhealthy_threshold                       = 3
         protocol                                  = "Http"
-        port                                      = 8000
+        port                                      = 80
         path                                      = "/health"
-        host                                      = "127.0.0.1"
+        host                                      = "anovillo-sdg-azsc1-aca-dev-back.blackground-d35e4e46.swedencentral.azurecontainerapps.io"
         pick_host_name_from_backend_http_settings = false
         # Note on host : The Hostname used for this Probe. If the Application Gateway is configured for a single site,
         # by default the Host name should be specified as 127.0.0.1,
